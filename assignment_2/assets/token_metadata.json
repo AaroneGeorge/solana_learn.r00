@@ -1,0 +1,13 @@
+{
+  "name": "Smol Beginnings",
+  "symbol": "ATK2",
+  "description": "Assignment 2: Mint your SPL token.",
+  "image": "https://raw.githubusercontent.com/AaroneGeorge/solana_learn.r00/refs/heads/main/assignment_2/assets/turbin3.jpg",
+  "external_url": "https://github.com/AaroneGeorge",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Utility"
+    }
+  ]
+}
