@@ -32,7 +32,7 @@ impl<'info> Deposit<'info> {
             to: self.vault.to_account_info(),
         };
 
-        let cpi_ctx = CpiContext::new(System::id(), cpi_accounts);
+        let cpi_ctx = CpiContext::new(self.system_program.to_account_info(), cpi_accounts);
 
         transfer(cpi_ctx, amount)?;
 

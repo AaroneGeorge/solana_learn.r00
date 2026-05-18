@@ -8,7 +8,7 @@ pub mod state;
 
 // Re-exports everything from the modules for access.
 pub use constants::*;
-pub use error::*;
+// pub use error::*;
 pub use instructions::*;
 pub use state::*;
 

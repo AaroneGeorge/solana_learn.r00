@@ -23,7 +23,7 @@ pub struct Close<'info> {
     )]
     pub vault: SystemAccount<'info>,
 
-    system_program: Program<'info, System>
+    pub system_program: Program<'info, System>
 }
 
 impl<'info> Close<'info> {
@@ -45,7 +45,7 @@ impl<'info> Close<'info> {
 
         let signer_seeds = &[&seeds[..]];
 
-        let cpi_ctx = CpiContext::new_with_signer( System::id(), cpi_accounts, signer_seeds);
+        let cpi_ctx = CpiContext::new_with_signer(self.system_program.to_account_info(), cpi_accounts, signer_seeds);
 
         transfer(cpi_ctx, self.vault.lamports())?;
 

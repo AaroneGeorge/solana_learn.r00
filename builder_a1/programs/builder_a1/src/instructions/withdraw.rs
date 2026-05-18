@@ -46,7 +46,7 @@ impl<'info> Withdraw<'info> {
 
         let signer_seeds = &[&seeds[..]];
 
-        let cpi_ctx = CpiContext::new_with_signer(System::id(), cpi_accounts, signer_seeds);
+        let cpi_ctx = CpiContext::new_with_signer(self.system_program.to_account_info(), cpi_accounts, signer_seeds);
 
         transfer(cpi_ctx, amount)?;
 
