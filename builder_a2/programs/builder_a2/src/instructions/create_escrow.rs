@@ -1,4 +1,5 @@
 use anchor_lang::prelude::*;
+use crate::state::Escrow;
 use anchor_spl::{
     associated_token::AssociatedToken, 
     token_interface::{Mint, TokenInterface, TokenAccount, TransferChecked, transfer_checked}
@@ -88,7 +89,7 @@ impl<'info> Create<'info> {
         };
 
         let cpi_ctx = CpiContext::new(
-            self.token_program.key(), 
+            self.token_program.to_account_info(), 
             transfer_accounts
         );
 

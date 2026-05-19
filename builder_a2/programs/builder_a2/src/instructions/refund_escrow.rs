@@ -1,4 +1,5 @@
 use anchor_lang::prelude::*;
+use crate::state::Escrow;
 use anchor_spl::{
     token_interface::{Mint, TokenAccount, TokenInterface, TransferChecked, transfer_checked, CloseAccount, close_account}
 };
@@ -65,7 +66,7 @@ impl<'info> Refund<'info> {
             authority: self.escrow.to_account_info()
         };
 
-        let cpi_context = CpiContext::new_with_signer(self.token_program.key(), cpi_accounts, &signer_seeds);
+        let cpi_context = CpiContext::new_with_signer(self.token_program.to_account_info(), cpi_accounts, &signer_seeds);
 
         transfer_checked(
             cpi_context, 
@@ -83,8 +84,8 @@ impl<'info> Refund<'info> {
         };
 
         let cpi_context = CpiContext::new_with_signer(
-            self.token_program.key(), 
-            cpi_accounts, 
+            self.token_program.to_account_info(),
+            cpi_accounts,
             &signer_seeds
         );
         close_account(cpi_context)

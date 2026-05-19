@@ -1,4 +1,5 @@
 use anchor_lang::prelude::*;
+use crate::state::Escrow;
 use anchor_spl::{
     associated_token::AssociatedToken, 
     token_interface::{Mint, TokenAccount, TokenInterface, TransferChecked, transfer_checked, CloseAccount, close_account}
@@ -13,17 +14,14 @@ pub struct Accept<'info> {
     #[account(mut)]
     pub creator: SystemAccount<'info>,
 
-    #[account[
+    #[account(
         mint::token_program = token_program
-    ]]
-    pub mint_a: Box<InterfaceAccount<'info, Mint>>, 
-    // Box is used to reduce the size of the account struct, 
-    // since mint accounts are large and we only need to read from them, 
-    // we can use Box to store them on the heap instead of the stack
+    )]
+    pub mint_a: Box<InterfaceAccount<'info, Mint>>,
 
-    #[account[
+    #[account(
         mint::token_program = token_program
-    ]]
+    )]
     pub mint_b: Box<InterfaceAccount<'info, Mint>>,
 
 
@@ -103,7 +101,7 @@ impl<'info> Accept<'info> {
         };
 
         let cpi_ctx = CpiContext::new(
-            self.token_program.key(),
+            self.token_program.to_account_info(),
             cpi_accounts
         );
 
@@ -130,7 +128,7 @@ impl<'info> Accept<'info> {
             &[self.escrow.bump]
         ]];
 
-        let cpi_ctx = CpiContext::new_with_signer(self.token_program.key(), cpi_accounts, &signer_seeds);
+        let cpi_ctx = CpiContext::new_with_signer(self.token_program.to_account_info(), cpi_accounts, &signer_seeds);
 
         transfer_checked(
             cpi_ctx, 
@@ -147,7 +145,7 @@ impl<'info> Accept<'info> {
         };
 
         let cpi_context = CpiContext::new_with_signer(
-            self.token_program.key(), 
+            self.token_program.to_account_info(), 
             cpi_accounts, 
             &signer_seeds
         );
