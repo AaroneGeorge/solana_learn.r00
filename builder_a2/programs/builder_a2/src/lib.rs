@@ -1,11 +1,12 @@
-pub mod constants;
+pub use anchor_lang::prelude::*;
+
 pub mod error;
 pub mod instructions;
 pub mod state;
 
-pub use constants::*;
 pub use instructions::*;
 pub use state::*;
+// pub use error::Error;
 
 declare_id!("EsfzrVNn3fuSacJw55y1AamEa9NCPudV3hzEM8K7Kf7i");
 
