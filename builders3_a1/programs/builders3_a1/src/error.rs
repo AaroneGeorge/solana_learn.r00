@@ -1,25 +1,19 @@
-use anchor_lang::error_code;
+use anchor_lang::prelude::*;
 
 #[error_code]
-pub enum StakeError {
-    #[msg("Max Stake Reached")]
-    MaxStakeReached,
-    #[msg("Freeze Time Not Passed")]
-    FreezePeriodNotPassed,
-    #[msg("Invalid Asset")]
-    InvalidAsset,
-    #[msg("Asset Not Initialized")]
-    AssetNotInitialized,
-    #[msg("Invalid Collection")]
-    InvalidCollection,
-    #[msg("Collection Not Initialized")]
-    CollectionNotInitialized,
-    #[msg("Collection Already Initialized")]
-    CollectionAlreadyInitialized,
-    #[msg("Asset Already Initialized")]
-    AssetAlreadyInitialized,
-    #[msg("Not Owner")]
-    NotOwner,
-    #[msg("No Points Available")]
-    NoPoints,
+pub enum ErrorCode {
+    #[msg("Invalid asset owner")]
+    InvalidOwner,
+    #[msg("Invalid update authority")]
+    InvalidUpdateAuthority,
+    #[msg("Asset already staked")]
+    AlreadyStaked,
+    #[msg("Asset not staked")]
+    AssetNotStaked,
+    #[msg("Invlaid timestamp")]
+    InvalidTimestamp,
+    #[msg("Freeze period not elapsed")]
+    FreezePeriodNotElapsed,
+    #[msg("Invalid rewards bps")]
+    InvalidRewardsBps,
 }
