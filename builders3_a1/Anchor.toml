@@ -8,9 +8,12 @@ skip-lint = false
 [programs.devnet]
 builders3_a1 = "RCh4rrijMZstrGNNgSKdNz3UTDQYJDHTKvFMRA5mEm7"
 
+[programs.localnet]
+builders3_a1 = "RCh4rrijMZstrGNNgSKdNz3UTDQYJDHTKvFMRA5mEm7"
+
 [registry]
 url = "https://github.com/coral-xyz/anchor"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
