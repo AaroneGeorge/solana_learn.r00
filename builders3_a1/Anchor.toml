@@ -11,6 +11,9 @@ builders3_a1 = "RCh4rrijMZstrGNNgSKdNz3UTDQYJDHTKvFMRA5mEm7"
 [programs.localnet]
 builders3_a1 = "RCh4rrijMZstrGNNgSKdNz3UTDQYJDHTKvFMRA5mEm7"
 
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+
 [registry]
 url = "https://github.com/coral-xyz/anchor"
 
