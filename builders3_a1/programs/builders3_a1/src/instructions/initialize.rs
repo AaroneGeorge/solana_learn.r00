@@ -23,14 +23,12 @@ pub struct Initialize<'info> {
     #[account(has_one = update_authority @ ErrorCode::InvalidUpdateAuthority)]
     pub collection: Account<'info, BaseCollectionV1>,
 
-    // This account is not initialized and is being used for signing purposes only,
-    // we verify that derives from the correct seeds
+    /// CHECK: PDA derived from collection address, verified by seeds constraint; used for collection operations
     #[account(
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
     )]
-    pub update_authority: UncheckedAccount<'info>, //Used to authorize operations on the collection
-    // UncheckedAccount = Anchor doesn't validate it; we're using it for its address & bump only
+    pub update_authority: UncheckedAccount<'info>,
 
     // Creates a new SPL token mint for rewards, owned by the config PDA
     #[account(

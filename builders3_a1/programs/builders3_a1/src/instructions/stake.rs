@@ -40,11 +40,13 @@ pub struct Stake<'info> {
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
     )]
+    /// CHECK: PDA derived from collection address, verified by seeds constraint
     pub update_authority: UncheckedAccount<'info>,
 
     pub system_program: Program<'info, System>,
 
     #[account(address = MPL_CORE_ID)]
+    /// CHECK: Verified by address constraint against MPL_CORE_ID
     pub mpl_core_program: UncheckedAccount<'info>,
 }
 

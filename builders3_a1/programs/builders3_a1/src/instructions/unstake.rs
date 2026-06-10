@@ -49,6 +49,7 @@ pub struct Unstake<'info> {
         seeds = [b"update_authority", collection.key().as_ref()],
         bump
     )]
+    /// CHECK: PDA derived from collection address, verified by seeds constraint
     pub update_authority: UncheckedAccount<'info>,
 
     #[account(
@@ -64,9 +65,10 @@ pub struct Unstake<'info> {
         associated_token::mint = rewards_mint,
         associated_token::authority = owner
     )]
-    pub user_rewards_ata: InterfaceAccount<'info, TokenAccount>, // User's associated token account for rewards
+    pub user_rewards_ata: InterfaceAccount<'info, TokenAccount>,
 
     #[account(address = MPL_CORE_ID)]
+    /// CHECK: Verified by address constraint against MPL_CORE_ID
     pub mpl_core_program: UncheckedAccount<'info>,
 
     pub token_program: Interface<'info, TokenInterface>,

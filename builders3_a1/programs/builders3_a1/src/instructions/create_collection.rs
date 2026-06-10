@@ -13,9 +13,11 @@ pub struct CreateCollection<'info> {
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
     )]
-    pub update_authority: UncheckedAccount<'info>, //it's used to sign the CPI to Metaplex
+    /// CHECK: PDA derived from collection address, used to sign CPI to Metaplex for collection creation
+    pub update_authority: UncheckedAccount<'info>,
 
     #[account(address = MPL_CORE_ID)]
+    /// CHECK: Verified by address constraint against MPL_CORE_ID
     pub mpl_core_program: UncheckedAccount<'info>,
 
     pub system_program: Program<'info, System>,
